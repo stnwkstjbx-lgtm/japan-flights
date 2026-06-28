@@ -3,17 +3,14 @@
     "depart": "2027-01-21",
     "return": "2027-01-24",
     "currency": "KRW",
-    "market": "ko-KR",
-    "countryCode": "KR",
-    "passengers": 1,
-    "cabin": "economy"
+    "passengers": 1
   },
-  "origin": { "code": "ICN", "skyId": "ICN", "entityId": "95673659", "skyDeep": "icn" },
+  "origin": "ICN",
   "target": 350000,
   "maxOffersPerCity": 6,
   "destinations": [
-    { "code": "TYO", "name": "도쿄",     "region": "간토",     "emoji": "🗼", "query": "Tokyo",   "skyDeep": "tyoa" },
-    { "code": "OSA", "name": "오사카",   "region": "간사이",   "emoji": "🏯", "query": "Osaka",   "skyDeep": "osaa" },
-    { "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺", "query": "Okinawa", "skyDeep": "oka" }
+    { "code": "TYO", "name": "도쿄",     "region": "간토",     "emoji": "🗼", "arrivalId": "NRT,HND", "skyDeep": "tyoa" },
+    { "code": "OSA", "name": "오사카",   "region": "간사이",   "emoji": "🏯", "arrivalId": "KIX",     "skyDeep": "osaa" },
+    { "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺", "arrivalId": "OKA",     "skyDeep": "oka" }
   ]
 }

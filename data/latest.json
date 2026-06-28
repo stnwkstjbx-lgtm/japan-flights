@@ -1,14 +1,415 @@
 {
-  "updated": "2026-06-28T14:00:00+09:00",
+  "updated": "2026-06-28T14:39:53.632+09:00",
   "sample": false,
-  "pending": true,
-  "source": "Skyscanner (Sky Scrapper, RapidAPI) · 왕복 실시간",
-  "trip": { "depart": "2027-01-21", "return": "2027-01-24", "currency": "KRW", "passengers": 1, "cabin": "economy" },
+  "source": "Google Flights (SerpApi) · 왕복 실시간",
+  "trip": {
+    "depart": "2027-01-21",
+    "return": "2027-01-24",
+    "currency": "KRW",
+    "passengers": 1
+  },
   "target": 350000,
-  "overall": null,
+  "overall": {
+    "code": "OSA",
+    "name": "오사카",
+    "region": "간사이",
+    "emoji": "🏯",
+    "cheapest": {
+      "dest": "OSA",
+      "price": 225511,
+      "airline": "피치항공",
+      "airlines": [
+        "피치항공"
+      ],
+      "departureAt": "2027-01-21T07:30:00",
+      "returnAt": null,
+      "stops": 0,
+      "durationMin": 105,
+      "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+    },
+    "offers": [
+      {
+        "dest": "OSA",
+        "price": 225511,
+        "airline": "피치항공",
+        "airlines": [
+          "피치항공"
+        ],
+        "departureAt": "2027-01-21T07:30:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 105,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      {
+        "dest": "OSA",
+        "price": 248500,
+        "airline": "피치항공",
+        "airlines": [
+          "피치항공"
+        ],
+        "departureAt": "2027-01-21T10:35:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 105,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      {
+        "dest": "OSA",
+        "price": 285511,
+        "airline": "피치항공",
+        "airlines": [
+          "피치항공"
+        ],
+        "departureAt": "2027-01-21T15:05:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 105,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      {
+        "dest": "OSA",
+        "price": 285511,
+        "airline": "피치항공",
+        "airlines": [
+          "피치항공"
+        ],
+        "departureAt": "2027-01-21T21:00:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 105,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      {
+        "dest": "OSA",
+        "price": 374311,
+        "airline": "티웨이항공",
+        "airlines": [
+          "티웨이항공"
+        ],
+        "departureAt": "2027-01-21T12:10:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 120,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      {
+        "dest": "OSA",
+        "price": 394311,
+        "airline": "티웨이항공",
+        "airlines": [
+          "티웨이항공"
+        ],
+        "departureAt": "2027-01-21T07:55:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 120,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      }
+    ],
+    "updatedAt": "2026-06-28"
+  },
   "destinations": [
-    { "code": "TYO", "name": "도쿄",     "region": "간토",     "emoji": "🗼", "cheapest": null, "offers": [] },
-    { "code": "OSA", "name": "오사카",   "region": "간사이",   "emoji": "🏯", "cheapest": null, "offers": [] },
-    { "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺", "cheapest": null, "offers": [] }
+    {
+      "code": "OSA",
+      "name": "오사카",
+      "region": "간사이",
+      "emoji": "🏯",
+      "cheapest": {
+        "dest": "OSA",
+        "price": 225511,
+        "airline": "피치항공",
+        "airlines": [
+          "피치항공"
+        ],
+        "departureAt": "2027-01-21T07:30:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 105,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+      },
+      "offers": [
+        {
+          "dest": "OSA",
+          "price": 225511,
+          "airline": "피치항공",
+          "airlines": [
+            "피치항공"
+          ],
+          "departureAt": "2027-01-21T07:30:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 105,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OSA",
+          "price": 248500,
+          "airline": "피치항공",
+          "airlines": [
+            "피치항공"
+          ],
+          "departureAt": "2027-01-21T10:35:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 105,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OSA",
+          "price": 285511,
+          "airline": "피치항공",
+          "airlines": [
+            "피치항공"
+          ],
+          "departureAt": "2027-01-21T15:05:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 105,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OSA",
+          "price": 285511,
+          "airline": "피치항공",
+          "airlines": [
+            "피치항공"
+          ],
+          "departureAt": "2027-01-21T21:00:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 105,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OSA",
+          "price": 374311,
+          "airline": "티웨이항공",
+          "airlines": [
+            "티웨이항공"
+          ],
+          "departureAt": "2027-01-21T12:10:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 120,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OSA",
+          "price": 394311,
+          "airline": "티웨이항공",
+          "airlines": [
+            "티웨이항공"
+          ],
+          "departureAt": "2027-01-21T07:55:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 120,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=1"
+        }
+      ],
+      "updatedAt": "2026-06-28"
+    },
+    {
+      "code": "TYO",
+      "name": "도쿄",
+      "region": "간토",
+      "emoji": "🗼",
+      "cheapest": {
+        "dest": "TYO",
+        "price": 308700,
+        "airline": "ZIPAIR Tokyo",
+        "airlines": [
+          "ZIPAIR Tokyo"
+        ],
+        "departureAt": "2027-01-21T13:05:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 145,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+      },
+      "offers": [
+        {
+          "dest": "TYO",
+          "price": 308700,
+          "airline": "ZIPAIR Tokyo",
+          "airlines": [
+            "ZIPAIR Tokyo"
+          ],
+          "departureAt": "2027-01-21T13:05:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 145,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "TYO",
+          "price": 412900,
+          "airline": "피치항공",
+          "airlines": [
+            "피치항공"
+          ],
+          "departureAt": "2027-01-21T22:50:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 125,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "TYO",
+          "price": 462898,
+          "airline": "이스타항공",
+          "airlines": [
+            "이스타항공"
+          ],
+          "departureAt": "2027-01-21T07:15:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 175,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "TYO",
+          "price": 508457,
+          "airline": "이스타항공",
+          "airlines": [
+            "이스타항공"
+          ],
+          "departureAt": "2027-01-21T08:40:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 135,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "TYO",
+          "price": 508457,
+          "airline": "이스타항공",
+          "airlines": [
+            "이스타항공"
+          ],
+          "departureAt": "2027-01-21T15:20:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 145,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        },
+        {
+          "dest": "TYO",
+          "price": 579600,
+          "airline": "티웨이항공",
+          "airlines": [
+            "티웨이항공"
+          ],
+          "departureAt": "2027-01-21T08:35:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 140,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=1"
+        }
+      ],
+      "updatedAt": "2026-06-28"
+    },
+    {
+      "code": "OKA",
+      "name": "오키나와",
+      "region": "오키나와",
+      "emoji": "🌺",
+      "cheapest": {
+        "dest": "OKA",
+        "price": 597200,
+        "airline": "진에어",
+        "airlines": [
+          "진에어"
+        ],
+        "departureAt": "2027-01-21T10:10:00",
+        "returnAt": null,
+        "stops": 0,
+        "durationMin": 145,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+      },
+      "offers": [
+        {
+          "dest": "OKA",
+          "price": 597200,
+          "airline": "진에어",
+          "airlines": [
+            "진에어"
+          ],
+          "departureAt": "2027-01-21T10:10:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 145,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OKA",
+          "price": 711200,
+          "airline": "티웨이항공",
+          "airlines": [
+            "티웨이항공"
+          ],
+          "departureAt": "2027-01-21T11:50:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 155,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OKA",
+          "price": 716400,
+          "airline": "아시아나항공",
+          "airlines": [
+            "아시아나항공"
+          ],
+          "departureAt": "2027-01-21T14:30:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 150,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OKA",
+          "price": 718700,
+          "airline": "이스타항공",
+          "airlines": [
+            "이스타항공"
+          ],
+          "departureAt": "2027-01-21T11:30:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 150,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OKA",
+          "price": 861300,
+          "airline": "대한항공",
+          "airlines": [
+            "대한항공"
+          ],
+          "departureAt": "2027-01-21T14:35:00",
+          "returnAt": null,
+          "stops": 0,
+          "durationMin": 150,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        },
+        {
+          "dest": "OKA",
+          "price": 899569,
+          "airline": "대한항공",
+          "airlines": [
+            "대한항공",
+            "JTA"
+          ],
+          "departureAt": "2027-01-21T18:40:00",
+          "returnAt": null,
+          "stops": 1,
+          "durationMin": 860,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=1"
+        }
+      ],
+      "updatedAt": "2026-06-28"
+    }
   ]
 }

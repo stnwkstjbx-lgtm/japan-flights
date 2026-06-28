@@ -2,7 +2,7 @@ name: Track flight prices
 
 on:
   schedule:
-    - cron: "0 0 * * 1"   # 매주 월요일 00:00 UTC = 09:00 KST (도시 3개×왕복1회 = 회당 3호출 → 월 ~13회, 무료 20회 안)
+    - cron: "0 0 * * *"   # 매일 00:00 UTC = 09:00 KST (도시 3개 = 일 3회 → 월 ~90회, SerpApi 무료 250회 안)
   workflow_dispatch:         # 수동 실행 버튼
 
 permissions:
@@ -20,14 +20,14 @@ jobs:
 
       - name: Fetch prices
         env:
-          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: node scripts/fetch-prices.mjs
 
       - name: Commit updated data
         run: |
           git config user.name "flight-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data/latest.json data/history.json data/airports.json
+          git add data/latest.json data/history.json
           if git diff --staged --quiet; then
             echo "변경 없음 — 커밋 생략"
           else
