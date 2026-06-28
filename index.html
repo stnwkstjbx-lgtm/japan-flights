@@ -85,7 +85,7 @@
   </section>
 
   <footer>
-    가격은 구글 항공권 기준 <b>왕복 총액 실시간 최저가</b>(LCC 포함)입니다. 표시 시간은 가는편 출발 기준이며, 귀국편·실제 결제는 「예약」에서 확인하세요.<br />
+    가격은 구글 항공권 기준 <b>5인 왕복 총액 실시간 최저가</b>(LCC 포함)입니다. 시간은 가는편 출발→도착이며, 귀국편·실제 결제는 「예약」에서 확인하세요. 인천/김포 중 더 싼 출발지를 표시합니다.<br />
     도쿄·오사카·오키나와 · 매일 자동 수집 · 데이터 Google Flights(SerpApi) · GitHub Actions + Vercel.
   </footer>
 
@@ -145,10 +145,10 @@
       const isMin = minRec != null && c.price <= minRec;
       el.innerHTML = `
         <div>
-          <div class="label">일본 전역 최저가</div>
-          <div class="city">${o.emoji} ${o.name} <span>${o.region} · ${c.origin} 출발</span></div>
+          <div class="label">일본 전역 최저가 · ${latest.trip?.passengers || 1}인 왕복 총액</div>
+          <div class="city">${o.emoji} ${o.name} <span>${o.region} · ${c.originLabel || c.origin} 출발</span></div>
           <div class="price">${won(c.price)}</div>
-          <div class="sub">${c.airline} · 출발 ${hm(c.departureAt)} / 귀국 ${hm(c.returnAt)}</div>
+          <div class="sub">${c.airline} · 가는편 ${hm(c.departureAt)} → ${hm(c.arrivalAt)} ${c.stops ? "("+c.stops+"경유)" : "(직항)"}</div>
           ${delta}
         </div>
         <div class="hero-right">
@@ -191,8 +191,8 @@
         const c = d.cheapest;
         const detail = (d.offers||[]).map(o=>`
           <div class="drow">
-            <span>${o.origin}→${o.dest} · ${o.airline} ${o.airlineCode||""}${o.flightNumber?" "+o.flightNumber:""}</span>
-            <span>출발 ${hm(o.departureAt)} / 귀국 ${hm(o.returnAt)}</span>
+            <span>${o.originLabel || o.origin} 출발 · ${o.airline} ${o.stops ? "("+o.stops+"경유)" : "(직항)"}</span>
+            <span>가는편 ${hm(o.departureAt)} → ${hm(o.arrivalAt)}</span>
             <span style="color:var(--txt);font-weight:700">${won(o.price)}</span>
             <a class="book" href="${o.bookingUrl}" target="_blank" rel="noopener noreferrer">예약</a>
           </div>`).join("");
@@ -200,15 +200,15 @@
           <tr class="main" data-i="${idx}">
             <td class="rank">${idx+1}</td>
             <td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td>
-            <td class="nowrap">${c.origin}</td>
+            <td class="nowrap">${c.originLabel || c.origin}</td>
             <td>${c.airline}</td>
-            <td class="nowrap">${hm(c.departureAt)}</td>
+            <td class="nowrap">${hm(c.departureAt)} → ${hm(c.arrivalAt)}</td>
             <td class="price">${won(c.price)} <span class="toggle">▾</span></td>
           </tr>
           <tr class="detail" id="d${idx}" style="display:none"><td colspan="6">${detail}</td></tr>`;
       }).join("");
       const tbl = document.getElementById("table");
-      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>최저 항공사</th><th>출발시각</th><th>최저가</th></tr></thead><tbody>${rows}</tbody>`;
+      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>최저 항공사</th><th>가는편(출발→도착)</th><th>최저가</th></tr></thead><tbody>${rows}</tbody>`;
       tbl.querySelectorAll("tr.main[data-i]").forEach(tr => {
         tr.onclick = (e) => {
           if (e.target.closest("a")) return;

@@ -3,14 +3,30 @@
     "depart": "2027-01-21",
     "return": "2027-01-24",
     "currency": "KRW",
-    "passengers": 1
+    "passengers": 5
   },
-  "origin": "ICN",
-  "target": 350000,
+  "target": 1500000,
   "maxOffersPerCity": 6,
   "destinations": [
-    { "code": "TYO", "name": "도쿄",     "region": "간토",     "emoji": "🗼", "arrivalId": "NRT,HND", "skyDeep": "tyoa" },
-    { "code": "OSA", "name": "오사카",   "region": "간사이",   "emoji": "🏯", "arrivalId": "KIX",     "skyDeep": "osaa" },
-    { "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺", "arrivalId": "OKA",     "skyDeep": "oka" }
+    {
+      "code": "TYO", "name": "도쿄", "region": "간토", "emoji": "🗼", "skyDeep": "tyoa",
+      "origins": [
+        { "code": "ICN", "label": "인천", "arrivalId": "NRT,HND", "skyDeep": "icn" },
+        { "code": "GMP", "label": "김포", "arrivalId": "HND",     "skyDeep": "gmp" }
+      ]
+    },
+    {
+      "code": "OSA", "name": "오사카", "region": "간사이", "emoji": "🏯", "skyDeep": "osaa",
+      "origins": [
+        { "code": "ICN", "label": "인천", "arrivalId": "KIX", "skyDeep": "icn" },
+        { "code": "GMP", "label": "김포", "arrivalId": "KIX", "skyDeep": "gmp" }
+      ]
+    },
+    {
+      "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺", "skyDeep": "oka",
+      "origins": [
+        { "code": "ICN", "label": "인천", "arrivalId": "OKA", "skyDeep": "icn" }
+      ]
+    }
   ]
 }
