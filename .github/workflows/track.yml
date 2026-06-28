@@ -23,11 +23,35 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: node scripts/fetch-prices.mjs
 
+      - name: Check alert
+        id: alert
+        run: |
+          SEND=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('data/alert.json','utf8')).send?'true':'false')}catch(e){console.log('false')}")
+          echo "send=$SEND" >> "$GITHUB_OUTPUT"
+          if [ "$SEND" = "true" ]; then
+            echo "subject=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/alert.json','utf8')).subject)")" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send price-alert email
+        if: steps.alert.outputs.send == 'true'
+        continue-on-error: true
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.naver.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: ${{ secrets.MAIL_USERNAME }}@naver.com
+          to: jaydsu@naver.com
+          subject: ${{ steps.alert.outputs.subject }}
+          html_body: file://data/alert-body.html
+
       - name: Commit updated data
         run: |
           git config user.name "stnwkstjbx-lgtm"
           git config user.email "254588511+stnwkstjbx-lgtm@users.noreply.github.com"
-          git add data/latest.json data/history.json
+          git add data/latest.json data/history.json data/alert-state.json
           if git diff --staged --quiet; then
             echo "변경 없음 — 커밋 생략"
           else

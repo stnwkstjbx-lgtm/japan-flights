@@ -11,6 +11,10 @@
     "outboundDepartFromHour": 9,
     "returnDepartFromHour": 14
   },
+  "alert": {
+    "perPersonTarget": 200000,
+    "mailTo": "jaydsu@naver.com"
+  },
   "destinations": [
     {
       "code": "TYO", "name": "도쿄", "region": "간토", "emoji": "🗼", "skyDeep": "tyoa",

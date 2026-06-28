@@ -35,6 +35,7 @@ function parseFlights(json, origin, dest, trip) {
       origin: origin.code, originLabel: origin.label, originDeep: origin.skyDeep, arrivalId: origin.arrivalId,
       price: f.price,
       airline: airlines[0] || "항공사미상",
+      logo: out.airline_logo || f.airline_logo || null,
       departureAt: toISO(out.departure_airport?.time),
       arrivalAt: toISO(last.arrival_airport?.time),
       stops: (f.layovers || []).length,
@@ -107,15 +108,15 @@ async function main() {
       cheapest = {
         originLabel: best.originLabel, origin: best.origin,
         price: ret ? ret.price : best.price,
-        out: { airline: best.airline, departureAt: best.departureAt, arrivalAt: best.arrivalAt, stops: best.stops },
-        ret: ret ? { airline: ret.airline, departureAt: ret.departureAt, arrivalAt: ret.arrivalAt, stops: ret.stops } : null,
+        out: { airline: best.airline, logo: best.logo, departureAt: best.departureAt, arrivalAt: best.arrivalAt, stops: best.stops },
+        ret: ret ? { airline: ret.airline, logo: ret.logo, departureAt: ret.departureAt, arrivalAt: ret.arrivalAt, stops: ret.stops } : null,
         bookingUrl: best.bookingUrl
       };
     }
 
     const offers = outs.slice(0, maxOffersPerCity).map((o) => ({
       originLabel: o.originLabel, price: o.price,
-      out: { airline: o.airline, departureAt: o.departureAt, arrivalAt: o.arrivalAt, stops: o.stops },
+      out: { airline: o.airline, logo: o.logo, departureAt: o.departureAt, arrivalAt: o.arrivalAt, stops: o.stops },
       bookingUrl: o.bookingUrl
     }));
 
@@ -126,8 +127,9 @@ async function main() {
   destinations.sort((a, b) => { if (!a.cheapest) return 1; if (!b.cheapest) return -1; return a.cheapest.price - b.cheapest.price; });
   const overall = destinations.find((d) => d.cheapest) || null;
 
+  const perPersonTarget = config.alert?.perPersonTarget ?? null;
   await writeFile(join(DATA, "latest.json"),
-    JSON.stringify({ updated, sample: false, source: "Google Flights (SerpApi) · 왕복 실시간", filterNote, trip, target, overall, destinations }, null, 2) + "\n");
+    JSON.stringify({ updated, sample: false, source: "Google Flights (SerpApi) · 왕복 실시간", filterNote, perPersonTarget, trip, target, overall, destinations }, null, 2) + "\n");
 
   let history = {};
   try { const raw = JSON.parse(await readFile(join(DATA, "history.json"), "utf8")); if (raw && !raw.sample) history = raw; } catch {}
@@ -135,6 +137,41 @@ async function main() {
   for (const d of destinations) if (d.cheapest) record(d.code, d.cheapest.price);
   if (overall) record("ALL", overall.cheapest.price);
   await writeFile(join(DATA, "history.json"), JSON.stringify(history, null, 2) + "\n");
+
+  // ── 목표가 알림 (1인 기준) ──
+  const pax = trip.passengers || 1;
+  if (perPersonTarget) {
+    let state = {};
+    try { state = JSON.parse(await readFile(join(DATA, "alert-state.json"), "utf8")); } catch {}
+    const hits = [];
+    for (const d of destinations) {
+      if (!d.cheapest) continue;
+      const pp = Math.round(d.cheapest.price / pax);
+      if (pp <= perPersonTarget) {
+        if (state[d.code] == null || pp < state[d.code]) { hits.push({ d, pp }); state[d.code] = pp; }
+      } else if (state[d.code] != null) {
+        delete state[d.code]; // 목표 위로 올라가면 해제 → 다음 하락 때 재알림
+      }
+    }
+    await writeFile(join(DATA, "alert-state.json"), JSON.stringify(state, null, 2) + "\n");
+    if (hits.length) {
+      const won = (n) => n.toLocaleString("ko-KR");
+      const subject = `✈️ 항공권 알림: ${hits.map((h) => `${h.d.name} 1인 ${won(h.pp)}원`).join(", ")}`;
+      const rows = hits.map((h) => {
+        const c = h.d.cheapest;
+        return `<li><b>${h.d.emoji} ${h.d.name}</b> — 1인 <b>${won(h.pp)}원</b> (${pax}인 총액 ${won(c.price)}원, ${c.originLabel} 출발)<br>` +
+          `&nbsp;&nbsp;가는편 ${c.out.airline} ${c.out.departureAt?.slice(5,16).replace("T"," ")} / 오는편 ${c.ret ? c.ret.airline + " " + c.ret.departureAt?.slice(5,16).replace("T"," ") : "예약에서 선택"}<br>` +
+          `&nbsp;&nbsp;<a href="${c.bookingUrl}">예약하러 가기 →</a></li>`;
+      }).join("");
+      const body = `<h2>목표가(1인 ${won(perPersonTarget)}원) 이하 항공권이 떴어요!</h2><ul>${rows}</ul>` +
+        `<p style="color:#888;font-size:12px">2027-01-21~24 · ${filterNote || "시간 제한 없음"} · 자동 알림</p>`;
+      await writeFile(join(DATA, "alert.json"), JSON.stringify({ send: true, subject, to: config.alert.mailTo }, null, 2) + "\n");
+      await writeFile(join(DATA, "alert-body.html"), body);
+      console.log(`🔔 알림 발송 대상: ${hits.map((h) => h.d.name).join(", ")}`);
+    } else {
+      await writeFile(join(DATA, "alert.json"), JSON.stringify({ send: false }, null, 2) + "\n");
+    }
+  }
 
   const ok = destinations.filter((d) => d.cheapest).length;
   console.log(`✅ 완료 (${today}) · ${trip.passengers}인 · 데이터 ${ok}/${destinations.length}개 · 전역 최저가 ${overall ? overall.emoji + " " + overall.name + " " + overall.cheapest.price.toLocaleString() + "원" : "없음"}`);

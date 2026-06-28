@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🇯🇵 일본 전역 항공권 최저가</title>
+  <title>🇯🇵 일본 항공권 최저가</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -72,12 +72,27 @@
     .toggle { color: var(--sub); font-size: 11px; }
     footer { color: var(--sub); font-size: 12px; margin: 30px 0 10px; line-height: 1.7; }
     .err { background:#3a1a1a; color:#ff9b9b; padding:14px; border-radius:10px; font-size:13px; }
+    .signal { font-size:13px; font-weight:700; margin-top:10px; padding:7px 11px; border-radius:9px; display:inline-block; }
+    .sig-good { background:#133a25; color:var(--good); }
+    .sig-mid { background:#3a3300; color:#ffd54f; }
+    .sig-bad { background:#3a1a1a; color:var(--bad); }
+    @media (max-width:600px) {
+      #table thead { display:none; }
+      #table, #table tbody { display:block; }
+      #table tr.main { display:block; border:1px solid var(--line); border-radius:12px; margin-bottom:10px; padding:10px 13px; }
+      #table tr.main td { display:flex; justify-content:space-between; align-items:center; gap:12px; border:0; padding:5px 0; text-align:right; white-space:normal; }
+      #table tr.main td.rank { display:none; }
+      #table tr.main td:nth-child(2) { text-align:left; font-size:15px; font-weight:700; border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:4px; }
+      #table tr.main td[data-label]::before { content:attr(data-label); color:var(--sub); font-size:12px; font-weight:400; }
+      #table tr.main td.price { font-size:16px; }
+      #table tr.detail, #table tr.detail td { display:block; }
+    }
   </style>
 </head>
 <body>
   <div id="banner"></div>
   <header>
-    <h1>🇯🇵 일본 전역 항공권 최저가</h1>
+    <h1>🇯🇵 일본 항공권 최저가</h1>
     <div class="meta">여행 일정 <b id="trip">–</b> · 인천/김포 출발 · 마지막 업데이트 <b id="updated">–</b></div>
     <div class="meta" id="filter" style="margin-top:4px"></div>
   </header>
@@ -107,8 +122,18 @@
     const won = (n) => n == null ? "–" : n.toLocaleString("ko-KR") + "원";
     const hm = (iso) => { if(!iso) return "–"; try { return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",hour12:false}); } catch { return "–"; } };
     const md = (iso) => { if(!iso) return ""; const p=iso.slice(5,10).split("-"); return p.length===2 ? `${+p[0]}/${+p[1]} ` : ""; };
-    const legLine = (l) => l ? `${l.airline} ${hm(l.departureAt)} → ${hm(l.arrivalAt)} ${l.stops?"("+l.stops+"경유)":"(직항)"}` : "정보 없음";
+    const logoImg = (l) => l ? `<img src="${l}" alt="" style="height:14px;width:14px;object-fit:contain;vertical-align:-2px;border-radius:3px;margin-right:4px;background:#fff">` : "";
+    const legLine = (l) => l ? `${logoImg(l.logo)}${l.airline} ${hm(l.departureAt)} → ${hm(l.arrivalAt)} ${l.stops?"("+l.stops+"경유)":"(직항)"}` : "정보 없음";
     const perP = (price, pax) => `1인 ${won(Math.round(price/(pax||1)))}`;
+    const dday = (depart) => { try { const dep=new Date(depart+"T00:00:00+09:00"); return Math.ceil((dep - new Date())/86400000); } catch { return null; } };
+    function buySignal(cur, history) {
+      const ps = (history.ALL||[]).map(x=>x.price);
+      if (ps.length < 2) return { cls:"", txt:"📊 가격 추이 수집 중 — 며칠 뒤 살 타이밍 신호를 알려드려요" };
+      const min=Math.min(...ps), avg=ps.reduce((a,b)=>a+b,0)/ps.length;
+      if (cur <= min*1.01) return { cls:"sig-good", txt:"🟢 지금이 역대 최저가 수준! 살 만한 타이밍" };
+      if (cur <= avg)      return { cls:"sig-mid",  txt:"🟡 평균 이하 — 나쁘지 않아요" };
+      return { cls:"sig-bad", txt:"🔴 최근 평균보다 비쌈 — 조금 더 지켜보기" };
+    }
     const PALETTE = ["#4dabf7","#ffd43b","#2ecc71","#b197fc","#ff922b","#ff6b9d"];
 
     async function load() {
@@ -159,20 +184,26 @@
         const d = c.price - prev, cls = d<0?"down":d>0?"up":"", sign = d<0?"▼":d>0?"▲":"–";
         delta = `<div class="sub delta ${cls}">전일 대비 ${sign} ${won(Math.abs(d))}</div>`;
       }
-      const atTarget = c.price <= latest.target;
+      const pax = latest.trip?.passengers || 1;
+      const perPerson = Math.round(c.price/pax);
+      const ppt = latest.perPersonTarget || null;
+      const atTarget = ppt ? perPerson <= ppt : (c.price <= latest.target);
       const isMin = minRec != null && c.price <= minRec;
+      const D = dday(latest.trip?.depart);
+      const sig = buySignal(c.price, history);
       el.innerHTML = `
         <div>
-          <div class="label">일본 전역 최저가 · 1인 왕복 (${latest.trip?.passengers || 1}인 함께 표시)</div>
+          <div class="label">일본 최저가 · 1인 왕복 (${pax}인 함께 표시)${D!=null?` · 여행까지 <b style="color:var(--txt)">D-${D}</b>`:""}</div>
           <div class="city">${o.emoji} ${o.name} <span>${o.region} · ${c.originLabel || c.origin} 출발</span></div>
-          <div class="price">${won(Math.round(c.price/(latest.trip?.passengers||1)))} <small style="font-size:14px;color:var(--sub);font-weight:500">· ${latest.trip?.passengers || 1}인 총액 ${won(c.price)}</small></div>
+          <div class="price">${won(perPerson)} <small style="font-size:14px;color:var(--sub);font-weight:500">· ${pax}인 총액 ${won(c.price)}</small></div>
           <div class="sub">✈️ 가는편 ${legLine(c.out)}<br>🛬 오는편 ${legLine(c.ret)}</div>
           ${delta}
+          <div class="signal ${sig.cls}">${sig.txt}</div>
         </div>
         <div class="hero-right">
           <a class="book" href="${c.bookingUrl}" target="_blank" rel="noopener noreferrer">예약하러 가기 →</a>
           <div class="chips">
-            ${atTarget?'<span class="chip good">목표가 이하 ✅</span>':`<span class="chip">목표 ${won(latest.target)}</span>`}
+            ${atTarget?'<span class="chip good">목표가 이하 ✅</span>':`<span class="chip">목표 1인 ${won(ppt||Math.round(latest.target/pax))}</span>`}
             ${isMin?'<span class="chip good">최저가 기록 🔥</span>':''}
           </div>
         </div>`;
@@ -226,10 +257,10 @@
           <tr class="main" data-i="${idx}">
             <td class="rank">${idx+1}</td>
             <td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td>
-            <td class="nowrap">${c.originLabel}</td>
-            <td class="nowrap">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</td>
-            <td class="nowrap">${c.ret ? hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt) : "–"}</td>
-            <td class="price">${won(Math.round(c.price/pax))}<div class="reg" style="font-weight:400">총액 ${won(c.price)}</div><span class="toggle">▾</span></td>
+            <td class="nowrap" data-label="출발">${c.originLabel}</td>
+            <td class="nowrap" data-label="가는편">${logoImg(c.out.logo)}${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</td>
+            <td class="nowrap" data-label="오는편">${c.ret ? logoImg(c.ret.logo)+hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt) : "–"}</td>
+            <td class="price" data-label="최저가">${won(Math.round(c.price/pax))}<div class="reg" style="font-weight:400">총액 ${won(c.price)}</div><span class="toggle">▾</span></td>
           </tr>
           <tr class="detail" id="d${idx}" style="display:none"><td colspan="6">${detail}</td></tr>`;
       }).join("");
