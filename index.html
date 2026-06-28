@@ -87,7 +87,7 @@
   </section>
 
   <section>
-    <h2>가격 추이 <span style="font-size:12px;color:var(--sub);font-weight:400">(전역 최저가 + 인기 도시)</span></h2>
+    <h2>가격 추이 <span style="font-size:12px;color:var(--sub);font-weight:400">(1인 기준 · 전역 최저가 + 도시별)</span></h2>
     <div class="chart-wrap"><canvas id="chart" height="180"></canvas></div>
   </section>
 
@@ -176,6 +176,7 @@
     }
 
     function renderChart(latest, history) {
+      const pax = latest.trip?.passengers || 1;
       const all = history.ALL || [];
       // 추이에 띄울 도시: 데이터 있는 상위 5개
       const top = latest.destinations.filter(d=>d.cheapest && history[d.code]).slice(0,5);
@@ -183,7 +184,7 @@
         ...all.map(x=>x.date),
         ...top.flatMap(d=>history[d.code].map(x=>x.date))
       ])].sort();
-      const series = (arr) => dates.map(dt => { const f=(arr||[]).find(x=>x.date===dt); return f?f.price:null; });
+      const series = (arr) => dates.map(dt => { const f=(arr||[]).find(x=>x.date===dt); return f?Math.round(f.price/pax):null; });
       const datasets = [];
       if (all.length) datasets.push({ label:"🇯🇵 전역 최저가", data:series(all), borderColor:"#ff5a5f", backgroundColor:"transparent", borderWidth:3.5, tension:.3, spanGaps:true, pointRadius:3 });
       top.forEach((d,i)=> datasets.push({ label:`${d.emoji} ${d.name}`, data:series(history[d.code]), borderColor:PALETTE[i%PALETTE.length], backgroundColor:"transparent", borderWidth:1.8, tension:.3, spanGaps:true, pointRadius:2, borderDash:[4,3] }));
