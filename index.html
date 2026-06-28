@@ -85,8 +85,8 @@
   </section>
 
   <footer>
-    가격은 <b>왕복 추정가</b>(가장 싼 가는편 + 가장 싼 오는편)이며 항공사가 다를 수 있습니다. 실제 결제가는 「예약」에서 확인하세요.<br />
-    일본 전역 공항을 매일 순환 수집(하루 4개 도시) · 데이터 Flight Fare Search · GitHub Actions + Vercel.
+    가격은 스카이스캐너 기준 <b>왕복 실시간 최저가</b>(LCC 포함)입니다. 실제 결제가는 「예약」에서 확인하세요.<br />
+    도쿄·오사카·오키나와 · 주 1회(월요일) 자동 수집 · 데이터 Skyscanner(Sky Scrapper) · GitHub Actions + Vercel.
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -113,7 +113,10 @@
     function render(latest, history) {
       if (latest.sample) {
         document.getElementById("banner").innerHTML =
-          '<div class="banner">⚠️ <b>샘플 데이터</b>입니다. Travelpayouts 토큰을 설정하면 일본 전역 실제 가격으로 자동 갱신됩니다. (README 참고)</div>';
+          '<div class="banner">⚠️ <b>샘플 데이터</b>입니다. RAPIDAPI_KEY 설정 후 실제 가격으로 자동 갱신됩니다.</div>';
+      } else if (latest.pending) {
+        document.getElementById("banner").innerHTML =
+          '<div class="banner">🕓 <b>첫 가격 수집 대기 중</b> — 무료 API 한도 리셋(약 7월 말) 후 매주 월요일 자동으로 채워집니다.</div>';
       }
       const t = latest.trip;
       document.getElementById("trip").textContent = `${t.depart} → ${t.return}`;
@@ -128,7 +131,7 @@
     function renderHero(latest, history) {
       const o = latest.overall;
       const el = document.getElementById("hero");
-      if (!o || !o.cheapest) { el.innerHTML = '<div class="err">수집된 가격이 없습니다.</div>'; return; }
+      if (!o || !o.cheapest) { el.innerHTML = '<div style="color:var(--sub);font-size:14px;padding:8px 2px">🕓 아직 수집된 가격이 없습니다. 다음 자동 수집 후 표시됩니다.</div>'; return; }
       const c = o.cheapest;
       const h = history.ALL || [];
       const prev = h.length >= 2 ? h[h.length-2].price : null;
