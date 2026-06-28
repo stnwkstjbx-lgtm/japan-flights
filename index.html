@@ -66,7 +66,9 @@
     .leg .air { display:flex; align-items:center; gap:6px; flex:1; min-width:0; color:var(--txt); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .leg .time { color:var(--txt); font-weight:700; white-space:nowrap; }
     .leg .badge { font-size:10.5px; color:var(--sub); background:var(--surface2); border-radius:5px; padding:1px 6px; white-space:nowrap; }
-    .logo { height:18px; width:18px; object-fit:contain; border-radius:4px; background:#fff; flex-shrink:0; }
+    .logo { height:18px; width:18px; object-fit:contain; border-radius:4px; background:#fff; flex-shrink:0; padding:1px; }
+    .leg .logo { height:24px; width:24px; border-radius:6px; }
+    .cc-sub .logo, .alt .logo { height:15px; width:15px; }
 
     .signal { display:inline-block; margin-top:14px; font-size:13px; font-weight:700; padding:8px 13px; border-radius:11px; }
     .sig-good { background:rgba(52,211,153,.14); color:var(--good); }
@@ -179,7 +181,7 @@
     const hm = (iso) => { if(!iso) return "–"; try { return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",hour12:false}); } catch { return "–"; } };
     const md = (iso) => { if(!iso) return ""; const p=iso.slice(5,10).split("-"); return p.length===2 ? `${+p[0]}/${+p[1]} ` : ""; };
     const esc = (s) => String(s==null?"":s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-    const logoImg = (l) => l ? `<img class="logo" src="${esc(l)}" alt="" loading="lazy">` : "";
+    const logoImg = (l, name) => l ? `<img class="logo" src="${esc(l)}" alt="${esc(name||"")}" title="${esc(name||"")}" loading="lazy">` : "";
     const stopTxt = (s) => s ? `${s}경유` : "직항";
     const perPrice = (price, pax) => Math.round(price/(pax||1));
     const dday = (depart) => { try { const dep=new Date(depart+"T00:00:00+09:00"); return Math.ceil((dep - new Date())/86400000); } catch { return null; } };
@@ -187,9 +189,10 @@
     // 항공편 한 줄 (가는편/오는편 공용)
     function legRow(tag, l) {
       if (!l) return `<div class="leg"><span class="tag">${tag}</span><span class="air">정보 없음 · 예약에서 선택</span></div>`;
+      const ident = l.logo ? logoImg(l.logo, l.airline) : `<span class="nm">${esc(l.airline)}</span>`;
       return `<div class="leg">
         <span class="tag">${tag}</span>
-        <span class="air">${logoImg(l.logo)}<span class="nm">${esc(l.airline)}</span> <span class="badge">${stopTxt(l.stops)}</span></span>
+        <span class="air">${ident}<span class="badge">${stopTxt(l.stops)}</span></span>
         <span class="time num">${md(l.departureAt)}${hm(l.departureAt)} → ${hm(l.arrivalAt)}</span>
       </div>`;
     }
@@ -316,7 +319,7 @@
         const c = d.cheapest;
         const alts = (d.offers||[]).slice(0,5).map(o=>`
           <div class="alt">
-            <span class="ai">${logoImg(o.out.logo)}<span>${esc(o.originLabel)}·${esc(o.out.airline)} ${stopTxt(o.out.stops)}</span></span>
+            <span class="ai">${logoImg(o.out.logo, o.out.airline)}<span>${esc(o.originLabel)} 출발 · ${stopTxt(o.out.stops)}</span></span>
             <span class="at num">${md(o.out.departureAt)}${hm(o.out.departureAt)}→${hm(o.out.arrivalAt)}</span>
             <span class="ap"><b class="num">1인 ${won(perPrice(o.price,pax))}</b><small class="num">총 ${won(o.price)}</small></span>
           </div>`).join("");
@@ -328,8 +331,8 @@
                 <div class="cc-name">${d.emoji} ${esc(d.name)} <span class="reg">${esc(d.region)}</span></div>
                 <div class="cc-sub">
                   <span class="cc-orig">${esc(c.originLabel)} 출발</span>
-                  <span class="seg">${logoImg(c.out.logo)}가는 <b class="num">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</b></span>
-                  <span class="seg">${c.ret?logoImg(c.ret.logo):""}오는 <b class="num">${c.ret?hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt):"–"}</b></span>
+                  <span class="seg">${logoImg(c.out.logo, c.out.airline)}가는 <b class="num">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</b></span>
+                  <span class="seg">${c.ret?logoImg(c.ret.logo, c.ret.airline):""}오는 <b class="num">${c.ret?hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt):"–"}</b></span>
                 </div>
               </div>
               <div class="cc-price">
