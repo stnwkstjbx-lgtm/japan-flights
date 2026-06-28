@@ -42,7 +42,7 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          from: ${{ secrets.MAIL_USERNAME }}@naver.com
+          from: Japan Flights <jaydsu@naver.com>
           to: jaydsu@naver.com
           subject: ${{ steps.alert.outputs.subject }}
           html_body: file://data/alert-body.html
