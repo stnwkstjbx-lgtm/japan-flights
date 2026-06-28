@@ -148,9 +148,9 @@
       const isMin = minRec != null && c.price <= minRec;
       el.innerHTML = `
         <div>
-          <div class="label">일본 전역 최저가 · ${latest.trip?.passengers || 1}인 왕복 총액</div>
+          <div class="label">일본 전역 최저가 · 1인 왕복 (${latest.trip?.passengers || 1}인 함께 표시)</div>
           <div class="city">${o.emoji} ${o.name} <span>${o.region} · ${c.originLabel || c.origin} 출발</span></div>
-          <div class="price">${won(c.price)} <small style="font-size:14px;color:var(--sub);font-weight:500">· ${perP(c.price, latest.trip?.passengers)}</small></div>
+          <div class="price">${won(Math.round(c.price/(latest.trip?.passengers||1)))} <small style="font-size:14px;color:var(--sub);font-weight:500">· ${latest.trip?.passengers || 1}인 총액 ${won(c.price)}</small></div>
           <div class="sub">✈️ 가는편 ${legLine(c.out)}<br>🛬 오는편 ${legLine(c.ret)}</div>
           ${delta}
         </div>
@@ -190,7 +190,7 @@
       const pax = latest.trip?.passengers || 1;
       const rows = latest.destinations.map((d, idx) => {
         if (!d.cheapest) {
-          return `<tr class="main"><td class="rank">–</td><td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td><td colspan="3" style="color:var(--sub)">데이터 없음</td></tr>`;
+          return `<tr class="main"><td class="rank">–</td><td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td><td colspan="4" style="color:var(--sub)">데이터 없음</td></tr>`;
         }
         const c = d.cheapest;
         const alts = (d.offers||[]).slice(0,5).map(o=>`
@@ -211,12 +211,13 @@
             <td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td>
             <td class="nowrap">${c.originLabel}</td>
             <td class="nowrap">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</td>
-            <td class="price">${won(c.price)}<div class="reg" style="font-weight:400">${perP(c.price, pax)}</div><span class="toggle">▾</span></td>
+            <td class="nowrap">${c.ret ? hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt) : "–"}</td>
+            <td class="price">${won(Math.round(c.price/pax))}<div class="reg" style="font-weight:400">총액 ${won(c.price)}</div><span class="toggle">▾</span></td>
           </tr>
-          <tr class="detail" id="d${idx}" style="display:none"><td colspan="5">${detail}</td></tr>`;
+          <tr class="detail" id="d${idx}" style="display:none"><td colspan="6">${detail}</td></tr>`;
       }).join("");
       const tbl = document.getElementById("table");
-      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>가는편</th><th>최저가(총액/1인)</th></tr></thead><tbody>${rows}</tbody>`;
+      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>가는편</th><th>오는편</th><th>최저가(1인/총액)</th></tr></thead><tbody>${rows}</tbody>`;
       tbl.querySelectorAll("tr.main[data-i]").forEach(tr => {
         tr.onclick = (e) => {
           if (e.target.closest("a")) return;
