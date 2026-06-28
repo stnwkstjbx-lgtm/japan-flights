@@ -1,9 +1,9 @@
 {
-  "updated": "2026-06-28T15:46:21.508+09:00",
+  "updated": "2026-06-28T15:59:50.544+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
-  "perPersonTarget": 200000,
+  "perPersonTarget": 250000,
   "trip": {
     "depart": "2027-01-21",
     "return": "2027-01-24",
