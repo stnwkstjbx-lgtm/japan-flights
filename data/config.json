@@ -7,6 +7,10 @@
   },
   "target": 1500000,
   "maxOffersPerCity": 6,
+  "filters": {
+    "outboundDepartFromHour": 9,
+    "returnDepartFromHour": 14
+  },
   "destinations": [
     {
       "code": "TYO", "name": "도쿄", "region": "간토", "emoji": "🗼", "skyDeep": "tyoa",

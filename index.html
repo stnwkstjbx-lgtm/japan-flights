@@ -79,6 +79,7 @@
   <header>
     <h1>🇯🇵 일본 전역 항공권 최저가</h1>
     <div class="meta">여행 일정 <b id="trip">–</b> · 인천/김포 출발 · 마지막 업데이트 <b id="updated">–</b></div>
+    <div class="meta" id="filter" style="margin-top:4px"></div>
   </header>
 
   <section>
@@ -137,6 +138,8 @@
       document.getElementById("trip").textContent = `${t.depart} → ${t.return}`;
       document.getElementById("updated").textContent =
         new Date(latest.updated).toLocaleString("ko-KR", { dateStyle:"medium", timeStyle:"short" });
+      document.getElementById("filter").innerHTML = latest.filterNote
+        ? `⏰ 시간 조건: <b style="color:var(--txt)">${latest.filterNote}</b>` : "";
 
       renderHero(latest, history);
       renderChart(latest, history);

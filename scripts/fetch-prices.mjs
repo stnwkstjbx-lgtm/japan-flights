@@ -63,6 +63,17 @@ async function main() {
   const config = JSON.parse(await readFile(join(DATA, "config.json"), "utf8"));
   const { trip, target, maxOffersPerCity = 6 } = config;
 
+  // 시간대 필터 (config.filters)
+  const f = config.filters || {};
+  const obTimes = f.outboundDepartFromHour != null ? `${f.outboundDepartFromHour},23` : null;
+  const reTimes = f.returnDepartFromHour != null ? `${f.returnDepartFromHour},23` : null;
+  const outboundFilter = obTimes ? { outbound_times: obTimes } : {};
+  const returnFilter = reTimes ? { return_times: reTimes } : {};
+  const fnParts = [];
+  if (obTimes) fnParts.push(`가는편 ${f.outboundDepartFromHour}시 이후`);
+  if (reTimes) fnParts.push(`오는편 ${f.returnDepartFromHour}시 이후`);
+  const filterNote = fnParts.join(" · ") || null;
+
   const now = new Date(Date.now() + 9 * 3600 * 1000); // KST
   const today = now.toISOString().slice(0, 10);
   const updated = now.toISOString().replace("Z", "+09:00");
@@ -73,7 +84,7 @@ async function main() {
     let outs = [];
     for (const origin of d.origins) {
       try {
-        const json = await call({ departure_id: origin.code, arrival_id: origin.arrivalId || d.code }, trip);
+        const json = await call({ departure_id: origin.code, arrival_id: origin.arrivalId || d.code, ...outboundFilter, ...returnFilter }, trip);
         outs.push(...parseFlights(json, origin, d, trip));
       } catch (e) { console.warn(`  ⚠️ ${origin.code}->${d.code}: ${e.message}`); }
       await sleep(1200);
@@ -87,7 +98,7 @@ async function main() {
       let ret = null;
       if (best.departureToken) {
         try {
-          const json = await call({ departure_id: best.origin, arrival_id: best.arrivalId, departure_token: best.departureToken }, trip);
+          const json = await call({ departure_id: best.origin, arrival_id: best.arrivalId, departure_token: best.departureToken, ...outboundFilter, ...returnFilter }, trip);
           const rets = parseFlights(json, { code: best.origin, label: best.originLabel, skyDeep: best.originDeep, arrivalId: best.arrivalId }, d, trip);
           if (rets.length) ret = rets.sort((a, b) => a.price - b.price)[0];
           await sleep(1200);
@@ -116,7 +127,7 @@ async function main() {
   const overall = destinations.find((d) => d.cheapest) || null;
 
   await writeFile(join(DATA, "latest.json"),
-    JSON.stringify({ updated, sample: false, source: "Google Flights (SerpApi) · 왕복 실시간", trip, target, overall, destinations }, null, 2) + "\n");
+    JSON.stringify({ updated, sample: false, source: "Google Flights (SerpApi) · 왕복 실시간", filterNote, trip, target, overall, destinations }, null, 2) + "\n");
 
   let history = {};
   try { const raw = JSON.parse(await readFile(join(DATA, "history.json"), "utf8")); if (raw && !raw.sample) history = raw; } catch {}
