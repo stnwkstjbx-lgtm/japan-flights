@@ -100,9 +100,11 @@
     .cc-main { flex:1; min-width:0; }
     .cc-name { font-size:17px; font-weight:800; }
     .cc-name .reg { font-size:11.5px; color:var(--sub); font-weight:500; margin-left:5px; }
-    .cc-sub { display:flex; flex-wrap:wrap; gap:5px 12px; margin-top:5px; font-size:12px; color:var(--sub); }
-    .cc-sub .seg { display:flex; align-items:center; gap:5px; white-space:nowrap; }
+    .cc-sub { display:flex; flex-direction:column; align-items:flex-start; gap:4px; margin-top:7px; font-size:12px; color:var(--sub); }
+    .cc-sub .seg { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .cc-sub .seg .lab { color:var(--faint); font-size:11px; min-width:26px; }
     .cc-sub .seg b { color:var(--txt); font-weight:700; }
+    .cc-orig { align-self:flex-start; margin-bottom:1px; }
     .cc-orig { background:var(--surface2); border-radius:6px; padding:1px 7px; font-size:11px; color:var(--sub); }
     .cc-price { text-align:right; flex-shrink:0; }
     .cc-pp { font-size:20px; font-weight:900; color:var(--accent-d); letter-spacing:-.5px; }
@@ -171,7 +173,7 @@
 
   <footer>
     가격은 구글 항공권 기준 <b>5인 왕복 총액 실시간 최저가</b>(LCC 포함)이며, 1인 금액을 크게 표시합니다.<br />
-    시간은 가는편 출발→도착 기준이고 귀국편·실제 결제는 「예약」에서 확인하세요. 인천/김포 중 더 싼 출발지를 표시합니다.<br />
+    시간은 출발편(가는 날) 출발→도착 기준이고 복귀편·실제 결제는 「예약」에서 확인하세요. 인천/김포 중 더 싼 출발지를 표시합니다.<br />
     매일 자동 수집 · 데이터 Google Flights(SerpApi) · GitHub Actions + Vercel.
   </footer>
 
@@ -272,8 +274,8 @@
           </div>
           ${delta}
           <div class="legbox">
-            ${legRow("가는편", c.out)}
-            ${legRow("오는편", c.ret)}
+            ${legRow("출발", c.out)}
+            ${legRow("복귀", c.ret)}
           </div>
           <div class="signal ${sig.cls}">${sig.txt}</div>
           <div class="hero-foot">
@@ -317,7 +319,7 @@
             <div class="cc-main"><div class="cc-name">${d.emoji} ${esc(d.name)} <span class="reg">${esc(d.region)}</span></div>
             <div class="nodata" style="padding:6px 0 0">데이터 없음</div></div></div></div>`;
         const c = d.cheapest;
-        const alts = (d.offers||[]).slice(0,5).map(o=>`
+        const alts = (d.offers||[]).slice(0,3).map(o=>`
           <div class="alt">
             <span class="ai">${logoImg(o.out.logo, o.out.airline)}<span>${esc(o.originLabel)} 출발 · ${stopTxt(o.out.stops)}</span></span>
             <span class="at num">${md(o.out.departureAt)}${hm(o.out.departureAt)}→${hm(o.out.arrivalAt)}</span>
@@ -331,8 +333,8 @@
                 <div class="cc-name">${d.emoji} ${esc(d.name)} <span class="reg">${esc(d.region)}</span></div>
                 <div class="cc-sub">
                   <span class="cc-orig">${esc(c.originLabel)} 출발</span>
-                  <span class="seg">${logoImg(c.out.logo, c.out.airline)}가는 <b class="num">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</b></span>
-                  <span class="seg">${c.ret?logoImg(c.ret.logo, c.ret.airline):""}오는 <b class="num">${c.ret?hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt):"–"}</b></span>
+                  <span class="seg">${logoImg(c.out.logo, c.out.airline)}<span class="lab">출발</span> <b class="num">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</b></span>
+                  <span class="seg">${c.ret?logoImg(c.ret.logo, c.ret.airline):""}<span class="lab">복귀</span> <b class="num">${c.ret?hm(c.ret.departureAt)+"→"+hm(c.ret.arrivalAt):"–"}</b></span>
                 </div>
               </div>
               <div class="cc-price">
@@ -343,12 +345,12 @@
             </div>
             <div class="cc-detail">
               <div class="rt">
-                ${legRow("✈️ 가는편", c.out)}
-                ${legRow("🛬 오는편", c.ret)}
+                ${legRow("✈️ 출발", c.out)}
+                ${legRow("🛬 복귀", c.ret)}
                 <div class="rt-price"><span class="v">1인 <b class="num">${won(perPrice(c.price,pax))}</b> · ${pax}인 총액 <span class="num">${won(c.price)}</span></span>
                   <a class="btn-book sm" href="${esc(c.bookingUrl)}" target="_blank" rel="noopener noreferrer">예약 →</a></div>
               </div>
-              ${alts?`<div class="alts"><div class="alts-h">다른 가는편 시간 (오는편은 예약에서 선택)</div>${alts}</div>`:""}
+              ${alts?`<div class="alts"><div class="alts-h">다른 출발 시간 (복귀편은 예약에서 선택)</div>${alts}</div>`:""}
             </div>
           </div>`;
       }).join("");
