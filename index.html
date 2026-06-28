@@ -92,7 +92,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script>
     const won = (n) => n == null ? "–" : n.toLocaleString("ko-KR") + "원";
-    const hm = (iso) => { try { return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",hour12:false}); } catch { return "–"; } };
+    const hm = (iso) => { if(!iso) return "–"; try { return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",hour12:false}); } catch { return "–"; } };
+    const md = (iso) => { if(!iso) return ""; const p=iso.slice(5,10).split("-"); return p.length===2 ? `${+p[0]}/${+p[1]} ` : ""; };
+    const legLine = (l) => l ? `${l.airline} ${hm(l.departureAt)} → ${hm(l.arrivalAt)} ${l.stops?"("+l.stops+"경유)":"(직항)"}` : "정보 없음";
+    const perP = (price, pax) => `1인 ${won(Math.round(price/(pax||1)))}`;
     const PALETTE = ["#4dabf7","#ffd43b","#2ecc71","#b197fc","#ff922b","#ff6b9d"];
 
     async function load() {
@@ -147,8 +150,8 @@
         <div>
           <div class="label">일본 전역 최저가 · ${latest.trip?.passengers || 1}인 왕복 총액</div>
           <div class="city">${o.emoji} ${o.name} <span>${o.region} · ${c.originLabel || c.origin} 출발</span></div>
-          <div class="price">${won(c.price)}</div>
-          <div class="sub">${c.airline} · 가는편 ${hm(c.departureAt)} → ${hm(c.arrivalAt)} ${c.stops ? "("+c.stops+"경유)" : "(직항)"}</div>
+          <div class="price">${won(c.price)} <small style="font-size:14px;color:var(--sub);font-weight:500">· ${perP(c.price, latest.trip?.passengers)}</small></div>
+          <div class="sub">✈️ 가는편 ${legLine(c.out)}<br>🛬 오는편 ${legLine(c.ret)}</div>
           ${delta}
         </div>
         <div class="hero-right">
@@ -184,31 +187,36 @@
     }
 
     function renderTable(latest) {
+      const pax = latest.trip?.passengers || 1;
       const rows = latest.destinations.map((d, idx) => {
         if (!d.cheapest) {
-          return `<tr class="main"><td class="rank">–</td><td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td><td colspan="4" style="color:var(--sub)">직항/캐시 데이터 없음</td></tr>`;
+          return `<tr class="main"><td class="rank">–</td><td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td><td colspan="3" style="color:var(--sub)">데이터 없음</td></tr>`;
         }
         const c = d.cheapest;
-        const detail = (d.offers||[]).map(o=>`
+        const alts = (d.offers||[]).slice(0,5).map(o=>`
           <div class="drow">
-            <span>${o.originLabel || o.origin} 출발 · ${o.airline} ${o.stops ? "("+o.stops+"경유)" : "(직항)"}</span>
-            <span>가는편 ${hm(o.departureAt)} → ${hm(o.arrivalAt)}</span>
+            <span>${o.originLabel} 출발 · ${o.out.airline} ${o.out.stops?"("+o.out.stops+"경유)":"(직항)"}</span>
+            <span>가는편 ${hm(o.out.departureAt)} → ${hm(o.out.arrivalAt)}</span>
             <span style="color:var(--txt);font-weight:700">${won(o.price)}</span>
-            <a class="book" href="${o.bookingUrl}" target="_blank" rel="noopener noreferrer">예약</a>
           </div>`).join("");
+        const detail = `
+          <div class="drow"><span style="color:var(--txt)">✈️ 가는편</span><span>${c.originLabel}·${legLine(c.out)}</span><a class="book" href="${c.bookingUrl}" target="_blank" rel="noopener noreferrer">예약</a></div>
+          <div class="drow"><span style="color:var(--txt)">🛬 오는편</span><span>${legLine(c.ret)}</span><span></span></div>
+          <div class="drow"><span style="color:var(--txt)">💳 ${pax}인 총액</span><span>${won(c.price)} · ${perP(c.price, pax)}</span><span></span></div>
+          <div style="margin:8px 0 2px;color:var(--sub);font-size:11px">다른 가는편 옵션</div>
+          ${alts}`;
         return `
           <tr class="main" data-i="${idx}">
             <td class="rank">${idx+1}</td>
             <td>${d.emoji} ${d.name}<div class="reg">${d.region}</div></td>
-            <td class="nowrap">${c.originLabel || c.origin}</td>
-            <td>${c.airline}</td>
-            <td class="nowrap">${hm(c.departureAt)} → ${hm(c.arrivalAt)}</td>
-            <td class="price">${won(c.price)} <span class="toggle">▾</span></td>
+            <td class="nowrap">${c.originLabel}</td>
+            <td class="nowrap">${hm(c.out.departureAt)}→${hm(c.out.arrivalAt)}</td>
+            <td class="price">${won(c.price)}<div class="reg" style="font-weight:400">${perP(c.price, pax)}</div><span class="toggle">▾</span></td>
           </tr>
-          <tr class="detail" id="d${idx}" style="display:none"><td colspan="6">${detail}</td></tr>`;
+          <tr class="detail" id="d${idx}" style="display:none"><td colspan="5">${detail}</td></tr>`;
       }).join("");
       const tbl = document.getElementById("table");
-      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>최저 항공사</th><th>가는편(출발→도착)</th><th>최저가</th></tr></thead><tbody>${rows}</tbody>`;
+      tbl.innerHTML = `<thead><tr><th></th><th>도시</th><th>출발</th><th>가는편</th><th>최저가(총액/1인)</th></tr></thead><tbody>${rows}</tbody>`;
       tbl.querySelectorAll("tr.main[data-i]").forEach(tr => {
         tr.onclick = (e) => {
           if (e.target.closest("a")) return;

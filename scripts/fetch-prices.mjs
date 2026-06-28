@@ -1,7 +1,7 @@
 // 일본 항공권 최저가 수집 (SerpApi · Google Flights)
 // 인천(ICN)·김포(GMP) → config.json 의 도시들을 정확한 왕복 날짜로 검색.
-// 실제 구글 항공권 데이터라 LCC(피치·제주·티웨이 등) 포함 진짜 최저가가 나온다.
-// 도시마다 인천/김포 둘 다 검색해 더 싼 출발지를 표시. 가격은 인원수(5인) 총액.
+// 1단계: 가는편 조회(더 싼 출발지 선택) → 2단계: departure_token 으로 오는편 조회.
+// 가격은 인원수(5인) 왕복 총액. LCC(피치·제주·티웨이 등) 포함.
 //
 // 실행: SERPAPI_KEY=xxxx node scripts/fetch-prices.mjs
 
@@ -15,51 +15,46 @@ const DATA = join(__dirname, "..", "data");
 const KEY = process.env.SERPAPI_KEY;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// "2027-01-21 08:00" → "2027-01-21T08:00:00"
-function toISO(s) {
+function toISO(s) { // "2027-01-21 08:00" → "2027-01-21T08:00:00"
   if (!s) return null;
   const t = s.trim().replace(" ", "T");
   return t.length === 16 ? t + ":00" : t;
 }
-
 function bookingUrl(originDeep, destDeep, depart, ret, adults) {
-  const d = (s) => s.slice(2).replaceAll("-", ""); // 2027-01-21 -> 270121
+  const d = (s) => s.slice(2).replaceAll("-", "");
   return `https://www.skyscanner.co.kr/transport/flights/${originDeep}/${destDeep}/${d(depart)}/${d(ret)}/?adults=${adults}`;
 }
 
-async function searchOrigin(origin, dest, trip) {
+function parseFlights(json, origin, dest, trip) {
+  const all = [...(json.best_flights || []), ...(json.other_flights || [])];
+  return all.map((f) => {
+    const seg = f.flights || [];
+    const out = seg[0] || {}, last = seg[seg.length - 1] || {};
+    const airlines = [...new Set(seg.map((s) => s.airline).filter(Boolean))];
+    return {
+      origin: origin.code, originLabel: origin.label, originDeep: origin.skyDeep, arrivalId: origin.arrivalId,
+      price: f.price,
+      airline: airlines[0] || "항공사미상",
+      departureAt: toISO(out.departure_airport?.time),
+      arrivalAt: toISO(last.arrival_airport?.time),
+      stops: (f.layovers || []).length,
+      departureToken: f.departure_token || null,
+      bookingUrl: bookingUrl(origin.skyDeep || origin.code.toLowerCase(), dest.skyDeep || dest.code.toLowerCase(), trip.depart, trip.return, trip.passengers || 1)
+    };
+  }).filter((o) => o.price > 0);
+}
+
+async function call(extra, trip) {
   const params = new URLSearchParams({
     engine: "google_flights",
-    departure_id: origin.code,
-    arrival_id: origin.arrivalId || dest.code,
-    outbound_date: trip.depart,
-    return_date: trip.return,
-    currency: trip.currency || "KRW",
-    hl: "ko", gl: "kr", type: "1",
-    adults: String(trip.passengers || 1),
-    api_key: KEY
+    outbound_date: trip.depart, return_date: trip.return,
+    currency: trip.currency || "KRW", hl: "ko", gl: "kr", type: "1",
+    adults: String(trip.passengers || 1), api_key: KEY, ...extra
   });
   const res = await fetch(`https://serpapi.com/search.json?${params}`);
   const json = await res.json();
   if (json.error) throw new Error(json.error);
-  const all = [...(json.best_flights || []), ...(json.other_flights || [])];
-  return all.map((f) => {
-    const seg = f.flights || [];
-    const out = seg[0] || {};
-    const last = seg[seg.length - 1] || {};
-    const airlines = [...new Set(seg.map((s) => s.airline).filter(Boolean))];
-    return {
-      origin: origin.code, originLabel: origin.label,
-      dest: dest.code,
-      price: f.price,
-      airline: airlines[0] || "항공사미상", airlines,
-      departureAt: toISO(out.departure_airport?.time),
-      arrivalAt: toISO(last.arrival_airport?.time),
-      stops: (f.layovers || []).length,
-      durationMin: f.total_duration ?? null,
-      bookingUrl: bookingUrl(origin.skyDeep || origin.code.toLowerCase(), dest.skyDeep || dest.code.toLowerCase(), trip.depart, trip.return, trip.passengers || 1)
-    };
-  }).filter((o) => o.price > 0);
+  return json;
 }
 
 async function main() {
@@ -74,20 +69,47 @@ async function main() {
 
   const destinations = [];
   for (const d of config.destinations) {
-    let offers = [];
+    // 1단계: 출발지별 가는편
+    let outs = [];
     for (const origin of d.origins) {
       try {
-        offers.push(...await searchOrigin(origin, d, trip));
-      } catch (e) {
-        console.warn(`  ⚠️ ${origin.code}->${d.code}: ${e.message}`);
-      }
+        const json = await call({ departure_id: origin.code, arrival_id: origin.arrivalId || d.code }, trip);
+        outs.push(...parseFlights(json, origin, d, trip));
+      } catch (e) { console.warn(`  ⚠️ ${origin.code}->${d.code}: ${e.message}`); }
       await sleep(1200);
     }
-    offers.sort((a, b) => a.price - b.price);
-    offers = offers.slice(0, maxOffersPerCity);
-    destinations.push({ code: d.code, name: d.name, region: d.region, emoji: d.emoji, cheapest: offers[0] || null, offers, updatedAt: today });
-    const c = offers[0];
-    console.log(`${d.emoji} ${d.name}: ${c ? c.price.toLocaleString() + "원 (" + c.originLabel + " 출발, " + (c.stops ? c.stops + "경유" : "직항") + ", " + c.airline + ")" : "데이터 없음"}`);
+    outs.sort((a, b) => a.price - b.price);
+
+    let cheapest = null;
+    if (outs.length) {
+      const best = outs[0];
+      // 2단계: 가장 싼 가는편의 오는편 조회
+      let ret = null;
+      if (best.departureToken) {
+        try {
+          const json = await call({ departure_id: best.origin, arrival_id: best.arrivalId, departure_token: best.departureToken }, trip);
+          const rets = parseFlights(json, { code: best.origin, label: best.originLabel, skyDeep: best.originDeep, arrivalId: best.arrivalId }, d, trip);
+          if (rets.length) ret = rets.sort((a, b) => a.price - b.price)[0];
+          await sleep(1200);
+        } catch (e) { console.warn(`  ⚠️ ${d.code} 오는편: ${e.message}`); }
+      }
+      cheapest = {
+        originLabel: best.originLabel, origin: best.origin,
+        price: ret ? ret.price : best.price,
+        out: { airline: best.airline, departureAt: best.departureAt, arrivalAt: best.arrivalAt, stops: best.stops },
+        ret: ret ? { airline: ret.airline, departureAt: ret.departureAt, arrivalAt: ret.arrivalAt, stops: ret.stops } : null,
+        bookingUrl: best.bookingUrl
+      };
+    }
+
+    const offers = outs.slice(0, maxOffersPerCity).map((o) => ({
+      originLabel: o.originLabel, price: o.price,
+      out: { airline: o.airline, departureAt: o.departureAt, arrivalAt: o.arrivalAt, stops: o.stops },
+      bookingUrl: o.bookingUrl
+    }));
+
+    destinations.push({ code: d.code, name: d.name, region: d.region, emoji: d.emoji, cheapest, offers, updatedAt: today });
+    console.log(`${d.emoji} ${d.name}: ${cheapest ? cheapest.price.toLocaleString() + "원 (" + cheapest.originLabel + ", 가는편 " + cheapest.out.airline + (cheapest.ret ? " / 오는편 " + cheapest.ret.airline : " / 오는편 미조회") + ")" : "데이터 없음"}`);
   }
 
   destinations.sort((a, b) => { if (!a.cheapest) return 1; if (!b.cheapest) return -1; return a.cheapest.price - b.cheapest.price; });

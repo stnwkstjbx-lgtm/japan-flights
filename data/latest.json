@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T14:55:45.627+09:00",
+  "updated": "2026-06-28T15:01:48.718+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "trip": {
@@ -15,109 +15,88 @@
     "region": "간사이",
     "emoji": "🏯",
     "cheapest": {
-      "origin": "ICN",
       "originLabel": "인천",
-      "dest": "OSA",
+      "origin": "ICN",
       "price": 1182500,
-      "airline": "피치항공",
-      "airlines": [
-        "피치항공"
-      ],
-      "departureAt": "2027-01-21T07:30:00",
-      "arrivalAt": "2027-01-21T09:15:00",
-      "stops": 0,
-      "durationMin": 105,
+      "out": {
+        "airline": "피치항공",
+        "departureAt": "2027-01-21T07:30:00",
+        "arrivalAt": "2027-01-21T09:15:00",
+        "stops": 0
+      },
+      "ret": {
+        "airline": "피치항공",
+        "departureAt": "2027-01-24T11:45:00",
+        "arrivalAt": "2027-01-24T13:50:00",
+        "stops": 0
+      },
       "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
     },
     "offers": [
       {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OSA",
         "price": 1182500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T07:30:00",
-        "arrivalAt": "2027-01-21T09:15:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T07:30:00",
+          "arrivalAt": "2027-01-21T09:15:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       },
       {
-        "origin": "GMP",
         "originLabel": "김포",
-        "dest": "OSA",
         "price": 1182500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T13:10:00",
-        "arrivalAt": "2027-01-21T14:55:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T13:10:00",
+          "arrivalAt": "2027-01-21T14:55:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       },
       {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OSA",
         "price": 1242500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T10:35:00",
-        "arrivalAt": "2027-01-21T12:20:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T10:35:00",
+          "arrivalAt": "2027-01-21T12:20:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       },
       {
-        "origin": "GMP",
         "originLabel": "김포",
-        "dest": "OSA",
         "price": 1422500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T18:50:00",
-        "arrivalAt": "2027-01-21T20:35:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T18:50:00",
+          "arrivalAt": "2027-01-21T20:35:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       },
       {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OSA",
         "price": 1482500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T15:05:00",
-        "arrivalAt": "2027-01-21T16:50:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T15:05:00",
+          "arrivalAt": "2027-01-21T16:50:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       },
       {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OSA",
         "price": 1482500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T21:00:00",
-        "arrivalAt": "2027-01-21T22:45:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T21:00:00",
+          "arrivalAt": "2027-01-21T22:45:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       }
     ],
@@ -130,109 +109,88 @@
       "region": "간사이",
       "emoji": "🏯",
       "cheapest": {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OSA",
+        "origin": "ICN",
         "price": 1182500,
-        "airline": "피치항공",
-        "airlines": [
-          "피치항공"
-        ],
-        "departureAt": "2027-01-21T07:30:00",
-        "arrivalAt": "2027-01-21T09:15:00",
-        "stops": 0,
-        "durationMin": 105,
+        "out": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-21T07:30:00",
+          "arrivalAt": "2027-01-21T09:15:00",
+          "stops": 0
+        },
+        "ret": {
+          "airline": "피치항공",
+          "departureAt": "2027-01-24T11:45:00",
+          "arrivalAt": "2027-01-24T13:50:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       },
       "offers": [
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OSA",
           "price": 1182500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T07:30:00",
-          "arrivalAt": "2027-01-21T09:15:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T07:30:00",
+            "arrivalAt": "2027-01-21T09:15:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
         },
         {
-          "origin": "GMP",
           "originLabel": "김포",
-          "dest": "OSA",
           "price": 1182500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T13:10:00",
-          "arrivalAt": "2027-01-21T14:55:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T13:10:00",
+            "arrivalAt": "2027-01-21T14:55:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OSA",
           "price": 1242500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T10:35:00",
-          "arrivalAt": "2027-01-21T12:20:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T10:35:00",
+            "arrivalAt": "2027-01-21T12:20:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
         },
         {
-          "origin": "GMP",
           "originLabel": "김포",
-          "dest": "OSA",
           "price": 1422500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T18:50:00",
-          "arrivalAt": "2027-01-21T20:35:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T18:50:00",
+            "arrivalAt": "2027-01-21T20:35:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OSA",
           "price": 1482500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T15:05:00",
-          "arrivalAt": "2027-01-21T16:50:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T15:05:00",
+            "arrivalAt": "2027-01-21T16:50:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OSA",
           "price": 1482500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T21:00:00",
-          "arrivalAt": "2027-01-21T22:45:00",
-          "stops": 0,
-          "durationMin": 105,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T21:00:00",
+            "arrivalAt": "2027-01-21T22:45:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
         }
       ],
@@ -244,109 +202,88 @@
       "region": "간토",
       "emoji": "🗼",
       "cheapest": {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "TYO",
+        "origin": "ICN",
         "price": 1543500,
-        "airline": "ZIPAIR Tokyo",
-        "airlines": [
-          "ZIPAIR Tokyo"
-        ],
-        "departureAt": "2027-01-21T13:05:00",
-        "arrivalAt": "2027-01-21T15:30:00",
-        "stops": 0,
-        "durationMin": 145,
+        "out": {
+          "airline": "ZIPAIR Tokyo",
+          "departureAt": "2027-01-21T13:05:00",
+          "arrivalAt": "2027-01-21T15:30:00",
+          "stops": 0
+        },
+        "ret": {
+          "airline": "ZIPAIR Tokyo",
+          "departureAt": "2027-01-24T08:55:00",
+          "arrivalAt": "2027-01-24T11:35:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
       },
       "offers": [
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 1543500,
-          "airline": "ZIPAIR Tokyo",
-          "airlines": [
-            "ZIPAIR Tokyo"
-          ],
-          "departureAt": "2027-01-21T13:05:00",
-          "arrivalAt": "2027-01-21T15:30:00",
-          "stops": 0,
-          "durationMin": 145,
+          "out": {
+            "airline": "ZIPAIR Tokyo",
+            "departureAt": "2027-01-21T13:05:00",
+            "arrivalAt": "2027-01-21T15:30:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 2064500,
-          "airline": "피치항공",
-          "airlines": [
-            "피치항공"
-          ],
-          "departureAt": "2027-01-21T22:50:00",
-          "arrivalAt": "2027-01-22T00:55:00",
-          "stops": 0,
-          "durationMin": 125,
+          "out": {
+            "airline": "피치항공",
+            "departureAt": "2027-01-21T22:50:00",
+            "arrivalAt": "2027-01-22T00:55:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 2265956,
-          "airline": "이스타항공",
-          "airlines": [
-            "이스타항공"
-          ],
-          "departureAt": "2027-01-21T07:15:00",
-          "arrivalAt": "2027-01-21T10:10:00",
-          "stops": 0,
-          "durationMin": 175,
+          "out": {
+            "airline": "이스타항공",
+            "departureAt": "2027-01-21T07:15:00",
+            "arrivalAt": "2027-01-21T10:10:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 2489523,
-          "airline": "이스타항공",
-          "airlines": [
-            "이스타항공"
-          ],
-          "departureAt": "2027-01-21T15:20:00",
-          "arrivalAt": "2027-01-21T17:45:00",
-          "stops": 0,
-          "durationMin": 145,
+          "out": {
+            "airline": "이스타항공",
+            "departureAt": "2027-01-21T15:20:00",
+            "arrivalAt": "2027-01-21T17:45:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 2542285,
-          "airline": "이스타항공",
-          "airlines": [
-            "이스타항공"
-          ],
-          "departureAt": "2027-01-21T08:40:00",
-          "arrivalAt": "2027-01-21T10:55:00",
-          "stops": 0,
-          "durationMin": 135,
+          "out": {
+            "airline": "이스타항공",
+            "departureAt": "2027-01-21T08:40:00",
+            "arrivalAt": "2027-01-21T10:55:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "TYO",
           "price": 2898000,
-          "airline": "티웨이항공",
-          "airlines": [
-            "티웨이항공"
-          ],
-          "departureAt": "2027-01-21T08:35:00",
-          "arrivalAt": "2027-01-21T10:55:00",
-          "stops": 0,
-          "durationMin": 140,
+          "out": {
+            "airline": "티웨이항공",
+            "departureAt": "2027-01-21T08:35:00",
+            "arrivalAt": "2027-01-21T10:55:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
@@ -358,79 +295,66 @@
       "region": "오키나와",
       "emoji": "🌺",
       "cheapest": {
-        "origin": "ICN",
         "originLabel": "인천",
-        "dest": "OKA",
+        "origin": "ICN",
         "price": 3556000,
-        "airline": "티웨이항공",
-        "airlines": [
-          "티웨이항공"
-        ],
-        "departureAt": "2027-01-21T11:50:00",
-        "arrivalAt": "2027-01-21T14:25:00",
-        "stops": 0,
-        "durationMin": 155,
+        "out": {
+          "airline": "티웨이항공",
+          "departureAt": "2027-01-21T11:50:00",
+          "arrivalAt": "2027-01-21T14:25:00",
+          "stops": 0
+        },
+        "ret": {
+          "airline": "티웨이항공",
+          "departureAt": "2027-01-24T15:25:00",
+          "arrivalAt": "2027-01-24T17:55:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
       },
       "offers": [
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OKA",
           "price": 3556000,
-          "airline": "티웨이항공",
-          "airlines": [
-            "티웨이항공"
-          ],
-          "departureAt": "2027-01-21T11:50:00",
-          "arrivalAt": "2027-01-21T14:25:00",
-          "stops": 0,
-          "durationMin": 155,
+          "out": {
+            "airline": "티웨이항공",
+            "departureAt": "2027-01-21T11:50:00",
+            "arrivalAt": "2027-01-21T14:25:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OKA",
           "price": 3582000,
-          "airline": "아시아나항공",
-          "airlines": [
-            "아시아나항공"
-          ],
-          "departureAt": "2027-01-21T14:30:00",
-          "arrivalAt": "2027-01-21T17:00:00",
-          "stops": 0,
-          "durationMin": 150,
+          "out": {
+            "airline": "아시아나항공",
+            "departureAt": "2027-01-21T14:30:00",
+            "arrivalAt": "2027-01-21T17:00:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OKA",
           "price": 3609093,
-          "airline": "이스타항공",
-          "airlines": [
-            "이스타항공"
-          ],
-          "departureAt": "2027-01-21T11:30:00",
-          "arrivalAt": "2027-01-21T14:00:00",
-          "stops": 0,
-          "durationMin": 150,
+          "out": {
+            "airline": "이스타항공",
+            "departureAt": "2027-01-21T11:30:00",
+            "arrivalAt": "2027-01-21T14:00:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         },
         {
-          "origin": "ICN",
           "originLabel": "인천",
-          "dest": "OKA",
           "price": 4306500,
-          "airline": "대한항공",
-          "airlines": [
-            "대한항공"
-          ],
-          "departureAt": "2027-01-21T14:35:00",
-          "arrivalAt": "2027-01-21T17:05:00",
-          "stops": 0,
-          "durationMin": 150,
+          "out": {
+            "airline": "대한항공",
+            "departureAt": "2027-01-21T14:35:00",
+            "arrivalAt": "2027-01-21T17:05:00",
+            "stops": 0
+          },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
