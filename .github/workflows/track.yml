@@ -2,7 +2,7 @@ name: Track flight prices
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # 매일 00:00 UTC = 09:00 KST (도시 3개 = 일 3회 → 월 ~90회, SerpApi 무료 250회 안)
+    - cron: "0 22 * * *"   # 매일 22:00 UTC = 07:00 KST (도시 3개 = 일 ~8회 → 월 ~240회, SerpApi 무료 250회 안)
   workflow_dispatch:         # 수동 실행 버튼
 
 permissions:
