@@ -1,0 +1,18 @@
+{
+  "trip": {
+    "depart": "2027-01-21",
+    "return": "2027-01-24",
+    "currency": "KRW",
+    "passengers": 1,
+    "cabin": "economy"
+  },
+  "origin": "ICN",
+  "target": 350000,
+  "dailyBudgetCalls": 6,
+  "maxOffersPerCity": 5,
+  "destinations": [
+    { "code": "NRT", "name": "도쿄",     "region": "간토",     "emoji": "🗼" },
+    { "code": "KIX", "name": "오사카",   "region": "간사이",   "emoji": "🏯" },
+    { "code": "OKA", "name": "오키나와", "region": "오키나와", "emoji": "🌺" }
+  ]
+}

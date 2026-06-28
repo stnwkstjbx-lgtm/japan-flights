@@ -1,0 +1,97 @@
+{
+  "updated": "2026-06-28T13:50:33.719+09:00",
+  "sample": false,
+  "source": "Flight Fare Search (RapidAPI) · 왕복 추정가",
+  "trip": {
+    "depart": "2027-01-21",
+    "return": "2027-01-24",
+    "currency": "KRW",
+    "passengers": 1,
+    "cabin": "economy"
+  },
+  "target": 350000,
+  "overall": {
+    "code": "KIX",
+    "name": "오사카",
+    "region": "간사이",
+    "emoji": "🏯",
+    "cheapest": {
+      "origin": "ICN",
+      "dest": "KIX",
+      "price": 668881,
+      "airline": "대한항공",
+      "airlineRaw": "Korean Air",
+      "departureAt": "2027-01-21T11:05:00",
+      "returnAt": "2027-01-24T02:15:00",
+      "returnAirline": "대한항공",
+      "stops": 0,
+      "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/kix/270121/270124/?adults=1"
+    },
+    "offers": [
+      {
+        "origin": "ICN",
+        "dest": "KIX",
+        "price": 668881,
+        "airline": "대한항공",
+        "airlineRaw": "Korean Air",
+        "departureAt": "2027-01-21T11:05:00",
+        "returnAt": "2027-01-24T02:15:00",
+        "returnAirline": "대한항공",
+        "stops": 0,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/kix/270121/270124/?adults=1"
+      }
+    ],
+    "updatedAt": "2026-06-28"
+  },
+  "destinations": [
+    {
+      "code": "KIX",
+      "name": "오사카",
+      "region": "간사이",
+      "emoji": "🏯",
+      "cheapest": {
+        "origin": "ICN",
+        "dest": "KIX",
+        "price": 668881,
+        "airline": "대한항공",
+        "airlineRaw": "Korean Air",
+        "departureAt": "2027-01-21T11:05:00",
+        "returnAt": "2027-01-24T02:15:00",
+        "returnAirline": "대한항공",
+        "stops": 0,
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/kix/270121/270124/?adults=1"
+      },
+      "offers": [
+        {
+          "origin": "ICN",
+          "dest": "KIX",
+          "price": 668881,
+          "airline": "대한항공",
+          "airlineRaw": "Korean Air",
+          "departureAt": "2027-01-21T11:05:00",
+          "returnAt": "2027-01-24T02:15:00",
+          "returnAirline": "대한항공",
+          "stops": 0,
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/kix/270121/270124/?adults=1"
+        }
+      ],
+      "updatedAt": "2026-06-28"
+    },
+    {
+      "code": "NRT",
+      "name": "도쿄",
+      "region": "간토",
+      "emoji": "🗼",
+      "cheapest": null,
+      "offers": []
+    },
+    {
+      "code": "OKA",
+      "name": "오키나와",
+      "region": "오키나와",
+      "emoji": "🌺",
+      "cheapest": null,
+      "offers": []
+    }
+  ]
+}
