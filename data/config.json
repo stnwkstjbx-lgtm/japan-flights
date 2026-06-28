@@ -12,7 +12,7 @@
     "returnDepartFromHour": 14
   },
   "alert": {
-    "perPersonTarget": 250000,
+    "perPersonTarget": 200000,
     "mailTo": "jaydsu@naver.com"
   },
   "destinations": [
