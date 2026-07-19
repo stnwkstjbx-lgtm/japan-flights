@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T07:41:12.512+09:00",
+  "updated": "2026-07-20T07:43:20.096+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
@@ -110,7 +110,7 @@
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
       }
     ],
-    "updatedAt": "2026-07-19"
+    "updatedAt": "2026-07-20"
   },
   "destinations": [
     {
@@ -212,7 +212,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-07-19"
+      "updatedAt": "2026-07-20"
     },
     {
       "code": "TYO",
@@ -313,7 +313,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-07-19"
+      "updatedAt": "2026-07-20"
     },
     {
       "code": "OKA",
@@ -355,7 +355,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3505500,
+          "price": 3497500,
           "out": {
             "airline": "이스타항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -414,7 +414,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-07-19"
+      "updatedAt": "2026-07-20"
     }
   ]
 }
