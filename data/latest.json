@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-01T09:55:47.300+09:00",
+  "updated": "2026-09-02T08:42:35.723+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
@@ -19,7 +19,7 @@
     "cheapest": {
       "originLabel": "인천",
       "origin": "ICN",
-      "price": 1581000,
+      "price": 1573500,
       "out": {
         "airline": "피치항공",
         "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -39,7 +39,7 @@
     "offers": [
       {
         "originLabel": "인천",
-        "price": 1581000,
+        "price": 1573500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -51,7 +51,7 @@
       },
       {
         "originLabel": "김포",
-        "price": 1651000,
+        "price": 1643500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -63,7 +63,7 @@
       },
       {
         "originLabel": "인천",
-        "price": 1761000,
+        "price": 1753500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -75,7 +75,7 @@
       },
       {
         "originLabel": "김포",
-        "price": 1771000,
+        "price": 1763500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -87,7 +87,7 @@
       },
       {
         "originLabel": "김포",
-        "price": 1831000,
+        "price": 1823500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -99,7 +99,7 @@
       },
       {
         "originLabel": "김포",
-        "price": 1831000,
+        "price": 1823500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -110,7 +110,7 @@
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       }
     ],
-    "updatedAt": "2026-09-01"
+    "updatedAt": "2026-09-02"
   },
   "destinations": [
     {
@@ -121,7 +121,7 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 1581000,
+        "price": 1573500,
         "out": {
           "airline": "피치항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -141,7 +141,7 @@
       "offers": [
         {
           "originLabel": "인천",
-          "price": 1581000,
+          "price": 1573500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -153,7 +153,7 @@
         },
         {
           "originLabel": "김포",
-          "price": 1651000,
+          "price": 1643500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -165,7 +165,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 1761000,
+          "price": 1753500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -177,7 +177,7 @@
         },
         {
           "originLabel": "김포",
-          "price": 1771000,
+          "price": 1763500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -189,7 +189,7 @@
         },
         {
           "originLabel": "김포",
-          "price": 1831000,
+          "price": 1823500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -201,7 +201,7 @@
         },
         {
           "originLabel": "김포",
-          "price": 1831000,
+          "price": 1823500,
           "out": {
             "airline": "피치항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
@@ -212,7 +212,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-09-02"
     },
     {
       "code": "TYO",
@@ -222,7 +222,7 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 2736000,
+        "price": 2735000,
         "out": {
           "airline": "제주항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -242,7 +242,7 @@
       "offers": [
         {
           "originLabel": "인천",
-          "price": 2736000,
+          "price": 2735000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -254,7 +254,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2736000,
+          "price": 2735000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -266,7 +266,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2740000,
+          "price": 2739500,
           "out": {
             "airline": "에어부산",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/BX.png",
@@ -278,7 +278,7 @@
         },
         {
           "originLabel": "김포",
-          "price": 2853500,
+          "price": 2850000,
           "out": {
             "airline": "전일본공수",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/NH.png",
@@ -290,7 +290,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2858000,
+          "price": 2857500,
           "out": {
             "airline": "티웨이항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/TW.png",
@@ -302,7 +302,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2861000,
+          "price": 2860000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -313,7 +313,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-09-02"
     },
     {
       "code": "OKA",
@@ -323,7 +323,7 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 3059000,
+        "price": 2949500,
         "out": {
           "airline": "이스타항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -367,7 +367,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3606000,
+          "price": 3598000,
           "out": {
             "airline": "캐세이패시픽항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
@@ -379,7 +379,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3625000,
+          "price": 3624000,
           "out": {
             "airline": "티웨이항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/TW.png",
@@ -391,7 +391,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3936000,
+          "price": 3862000,
           "out": {
             "airline": "대한항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/KE.png",
@@ -403,7 +403,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3957000,
+          "price": 3956000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -414,7 +414,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-09-02"
     }
   ]
 }
