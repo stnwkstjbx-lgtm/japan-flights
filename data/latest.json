@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31T09:05:56.122+09:00",
+  "updated": "2026-09-01T09:55:47.300+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
@@ -86,18 +86,6 @@
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       },
       {
-        "originLabel": "인천",
-        "price": 1821000,
-        "out": {
-          "airline": "피치항공",
-          "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
-          "departureAt": "2027-01-21T10:35:00",
-          "arrivalAt": "2027-01-21T12:20:00",
-          "stops": 0
-        },
-        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
-      },
-      {
         "originLabel": "김포",
         "price": 1831000,
         "out": {
@@ -108,9 +96,21 @@
           "stops": 0
         },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
+      },
+      {
+        "originLabel": "김포",
+        "price": 1831000,
+        "out": {
+          "airline": "피치항공",
+          "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
+          "departureAt": "2027-01-21T18:50:00",
+          "arrivalAt": "2027-01-21T20:35:00",
+          "stops": 0
+        },
+        "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       }
     ],
-    "updatedAt": "2026-08-31"
+    "updatedAt": "2026-09-01"
   },
   "destinations": [
     {
@@ -188,18 +188,6 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         },
         {
-          "originLabel": "인천",
-          "price": 1821000,
-          "out": {
-            "airline": "피치항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
-            "departureAt": "2027-01-21T10:35:00",
-            "arrivalAt": "2027-01-21T12:20:00",
-            "stops": 0
-          },
-          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/osaa/270121/270124/?adults=5"
-        },
-        {
           "originLabel": "김포",
           "price": 1831000,
           "out": {
@@ -210,9 +198,21 @@
             "stops": 0
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
+        },
+        {
+          "originLabel": "김포",
+          "price": 1831000,
+          "out": {
+            "airline": "피치항공",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/MM.png",
+            "departureAt": "2027-01-21T18:50:00",
+            "arrivalAt": "2027-01-21T20:35:00",
+            "stops": 0
+          },
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-01"
     },
     {
       "code": "TYO",
@@ -222,19 +222,19 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 2496500,
+        "price": 2736000,
         "out": {
-          "airline": "에어부산",
-          "logo": "https://www.gstatic.com/flights/airline_logos/70px/BX.png",
-          "departureAt": "2027-01-21T15:35:00",
-          "arrivalAt": "2027-01-21T18:10:00",
+          "airline": "제주항공",
+          "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
+          "departureAt": "2027-01-21T16:20:00",
+          "arrivalAt": "2027-01-21T18:40:00",
           "stops": 0
         },
         "ret": {
-          "airline": "에어부산",
-          "logo": "https://www.gstatic.com/flights/airline_logos/70px/BX.png",
-          "departureAt": "2027-01-24T19:05:00",
-          "arrivalAt": "2027-01-24T22:05:00",
+          "airline": "제주항공",
+          "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
+          "departureAt": "2027-01-24T14:00:00",
+          "arrivalAt": "2027-01-24T17:00:00",
           "stops": 0
         },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
@@ -242,19 +242,7 @@
       "offers": [
         {
           "originLabel": "인천",
-          "price": 2496500,
-          "out": {
-            "airline": "에어부산",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/BX.png",
-            "departureAt": "2027-01-21T15:35:00",
-            "arrivalAt": "2027-01-21T18:10:00",
-            "stops": 0
-          },
-          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
-        },
-        {
-          "originLabel": "인천",
-          "price": 2546000,
+          "price": 2736000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -266,7 +254,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2546000,
+          "price": 2736000,
           "out": {
             "airline": "제주항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
@@ -278,31 +266,31 @@
         },
         {
           "originLabel": "인천",
-          "price": 2671000,
+          "price": 2740000,
           "out": {
-            "airline": "제주항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
-            "departureAt": "2027-01-21T09:50:00",
-            "arrivalAt": "2027-01-21T12:15:00",
+            "airline": "에어부산",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/BX.png",
+            "departureAt": "2027-01-21T15:35:00",
+            "arrivalAt": "2027-01-21T18:10:00",
             "stops": 0
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         },
         {
-          "originLabel": "인천",
-          "price": 2671000,
+          "originLabel": "김포",
+          "price": 2853500,
           "out": {
-            "airline": "제주항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
-            "departureAt": "2027-01-21T10:25:00",
-            "arrivalAt": "2027-01-21T12:50:00",
+            "airline": "전일본공수",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/NH.png",
+            "departureAt": "2027-01-21T19:50:00",
+            "arrivalAt": "2027-01-21T21:55:00",
             "stops": 0
           },
-          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/tyoa/270121/270124/?adults=5"
         },
         {
           "originLabel": "인천",
-          "price": 2681000,
+          "price": 2858000,
           "out": {
             "airline": "티웨이항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/TW.png",
@@ -311,9 +299,21 @@
             "stops": 0
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
+        },
+        {
+          "originLabel": "인천",
+          "price": 2861000,
+          "out": {
+            "airline": "제주항공",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
+            "departureAt": "2027-01-21T09:50:00",
+            "arrivalAt": "2027-01-21T12:15:00",
+            "stops": 0
+          },
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-01"
     },
     {
       "code": "OKA",
@@ -323,7 +323,7 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 2820020,
+        "price": 3059000,
         "out": {
           "airline": "이스타항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -343,7 +343,7 @@
       "offers": [
         {
           "originLabel": "인천",
-          "price": 2897000,
+          "price": 3059000,
           "out": {
             "airline": "이스타항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -355,7 +355,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3134500,
+          "price": 3289000,
           "out": {
             "airline": "이스타항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -367,19 +367,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 3447000,
-          "out": {
-            "airline": "티웨이항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/TW.png",
-            "departureAt": "2027-01-21T11:50:00",
-            "arrivalAt": "2027-01-21T14:25:00",
-            "stops": 0
-          },
-          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
-        },
-        {
-          "originLabel": "인천",
-          "price": 3577000,
+          "price": 3606000,
           "out": {
             "airline": "캐세이패시픽항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
@@ -391,19 +379,19 @@
         },
         {
           "originLabel": "인천",
-          "price": 3766500,
+          "price": 3625000,
           "out": {
-            "airline": "제주항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
-            "departureAt": "2027-01-21T13:20:00",
-            "arrivalAt": "2027-01-21T15:50:00",
+            "airline": "티웨이항공",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/TW.png",
+            "departureAt": "2027-01-21T11:50:00",
+            "arrivalAt": "2027-01-21T14:25:00",
             "stops": 0
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         },
         {
           "originLabel": "인천",
-          "price": 3800000,
+          "price": 3936000,
           "out": {
             "airline": "대한항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/KE.png",
@@ -412,9 +400,21 @@
             "stops": 0
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
+        },
+        {
+          "originLabel": "인천",
+          "price": 3957000,
+          "out": {
+            "airline": "제주항공",
+            "logo": "https://www.gstatic.com/flights/airline_logos/70px/7C.png",
+            "departureAt": "2027-01-21T13:20:00",
+            "arrivalAt": "2027-01-21T15:50:00",
+            "stops": 0
+          },
+          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-01"
     }
   ]
 }
