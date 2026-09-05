@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T08:35:53.414+09:00",
+  "updated": "2026-09-06T08:28:31.564+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
@@ -110,7 +110,7 @@
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       }
     ],
-    "updatedAt": "2026-09-05"
+    "updatedAt": "2026-09-06"
   },
   "destinations": [
     {
@@ -212,7 +212,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-05"
+      "updatedAt": "2026-09-06"
     },
     {
       "code": "TYO",
@@ -222,7 +222,7 @@
       "cheapest": {
         "originLabel": "인천",
         "origin": "ICN",
-        "price": 2702843,
+        "price": 2676500,
         "out": {
           "airline": "이스타항공",
           "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -230,13 +230,19 @@
           "arrivalAt": "2027-01-21T17:45:00",
           "stops": 0
         },
-        "ret": null,
+        "ret": {
+          "airline": "이스타항공",
+          "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
+          "departureAt": "2027-01-24T20:00:00",
+          "arrivalAt": "2027-01-24T22:40:00",
+          "stops": 0
+        },
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
       },
       "offers": [
         {
           "originLabel": "인천",
-          "price": 2702843,
+          "price": 2696394,
           "out": {
             "airline": "이스타항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -248,7 +254,7 @@
         },
         {
           "originLabel": "인천",
-          "price": 2702843,
+          "price": 2696394,
           "out": {
             "airline": "이스타항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/ZE.png",
@@ -307,7 +313,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-05"
+      "updatedAt": "2026-09-06"
     },
     {
       "code": "OKA",
@@ -408,7 +414,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-09-05"
+      "updatedAt": "2026-09-06"
     }
   ]
 }
