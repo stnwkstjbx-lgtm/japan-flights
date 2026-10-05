@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T09:16:43.617+09:00",
+  "updated": "2026-10-05T09:21:19.330+09:00",
   "sample": false,
   "source": "Google Flights (SerpApi) · 왕복 실시간",
   "filterNote": "가는편 9시 이후 · 오는편 14시 이후",
@@ -110,7 +110,7 @@
         "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
       }
     ],
-    "updatedAt": "2026-10-04"
+    "updatedAt": "2026-10-05"
   },
   "destinations": [
     {
@@ -212,7 +212,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/gmp/osaa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-05"
     },
     {
       "code": "TYO",
@@ -313,7 +313,7 @@
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/tyoa/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-05"
     },
     {
       "code": "OKA",
@@ -391,30 +391,18 @@
         },
         {
           "originLabel": "인천",
-          "price": 6259000,
+          "price": 7068000,
           "out": {
             "airline": "아시아나항공",
             "logo": "https://www.gstatic.com/flights/airline_logos/70px/OZ.png",
-            "departureAt": "2027-01-21T21:00:00",
-            "arrivalAt": "2027-01-22T10:35:00",
-            "stops": 1
-          },
-          "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
-        },
-        {
-          "originLabel": "인천",
-          "price": 6310500,
-          "out": {
-            "airline": "대한항공",
-            "logo": "https://www.gstatic.com/flights/airline_logos/70px/KE.png",
-            "departureAt": "2027-01-21T18:55:00",
-            "arrivalAt": "2027-01-22T11:15:00",
+            "departureAt": "2027-01-21T21:30:00",
+            "arrivalAt": "2027-01-22T09:20:00",
             "stops": 1
           },
           "bookingUrl": "https://www.skyscanner.co.kr/transport/flights/icn/oka/270121/270124/?adults=5"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-05"
     }
   ]
 }
